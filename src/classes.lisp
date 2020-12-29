@@ -1,10 +1,10 @@
 (in-package :elf)
 
 (defclass elf ()
-  ((elf-header :accessor e-head)
+  ((elf-header :accessor ehead)
    (program-header-entries :accessor p-head-entries)
    (section-header-entries :accessor s-head-entries)
-   (segments :accessor segments)))
+   (sections :accessor sections)))
 
 (defclass elf-header ()
   ((cpu-word-width ;; :32 or :64

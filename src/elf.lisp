@@ -18,6 +18,18 @@
          acc))
       (t (error (format nil "Unknown endianness ~A" endianness))))))
 
+(defun parse-all-headers (filespec)
+  (let ((elf (make-instance 'elf)))
+    (with-open-file (s filespec :element-type '(unsigned-byte 8))
+      (setf (ehead elf) (parse-elf-header s))
+      (file-position s (program-header-offset (ehead elf)))
+      (setf (p-head-entries elf) (loop for i from 0 below (p-head-num-entries (ehead elf))
+                                    collect (parse-prog-header-entry s (ehead elf))))
+      (file-position s (section-header-offset (ehead elf)))
+      (setf (s-head-entries elf) (loop for i from 0 below (s-head-num-entries (ehead elf))
+                                    collect (parse-sect-header-entry s (ehead elf)))))
+    elf))
+
 (defmethod parse-elf-header ((s stream))
   "Parses elf file header from stream, returns 'elf-header' object"
   (let ((elf-header (make-instance 'elf-header)))

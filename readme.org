@@ -3,3 +3,26 @@
 
   It's very incomplete, so the API isn't done, but will hopefully be
   listed here later.
+  
+  Until then, you can use ~parse-all-headers~ on an ELF file and it
+  should return something like so:
+
+  #+begin_src lisp
+    ELF> (parse-all-headers "/home/sean/documents/code/lisp/cl-elf/src/testelf2")
+
+
+    #<ELF {1002F1CB03}>
+  #+end_src
+  And, upon inspection, you'll find:
+  #+begin_src lisp
+    #<ELF {1002F1CB03}>
+    --------------------
+    Class: #<STANDARD-CLASS ELF::ELF>
+    --------------------
+
+    All Slots:
+    [ ]  ELF-HEADER             = @1=#<ELF-HEADER {100304A423}>
+    [ ]  PROGRAM-HEADER-ENTRIES = @2=(#<PROGRAM-HEADER-ENTRY {100304E703}> #<PROGRAM-HEADER-ENTRY {100304EAF3}> #<PROGRAM-HEADER-ENTRY {100304EEE3}> #<PROGRAM-HEADER-ENTRY {100304F2D3}> #<PROGRAM-HEADER-ENTRY {100304F6C3}> #<PROGRAM-HEADER-ENTRY {100304FAB3}> #<PROGRAM-HEADER-ENTRY {100304FEA3}> #<PROGRAM-HEADER-ENTRY {1003050293}> #<PROGRAM-HEADER-ENTRY {1003050683}> #<PROGRAM-HEADER-ENTRY {1003050A73}> #<PROGRAM-HEADER-ENTRY {1003050E63}>)
+    [ ]  SECTION-HEADER-ENTRIES = @6=(#<SECTION-HEADER-ENTRY {1003051683}> #<SECTION-HEADER-ENTRY {1003052353}> #<SECTION-HEADER-ENTRY {1003052803}> #<SECTION-HEADER-ENTRY {1003052CB3}> #<SECTION-HEADER-ENTRY {1003053163}> #<SECTION-HEADER-ENTRY {1003053633}> #<SECTION-HEADER-ENTRY {1003053AE3}> #<SECTION-HEADER-ENTRY {1003053F93}> #<SECTION-HEADER-ENTRY {1003054463}> #<SECTION-HEADER-ENTRY {1003054933}> #<SECTION-HEADER-ENTRY {1003054DE3}> #<SECTION-HEADER-ENTRY {10030552A3}> #<SECTION-HEADER-ENTRY {1003055763}> ..)
+    [ ]  SECTIONS               = #<unbound>
+  #+end_src
