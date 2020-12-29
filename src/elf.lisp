@@ -27,7 +27,12 @@
                                     collect (parse-prog-header-entry s (ehead elf))))
       (file-position s (section-header-offset (ehead elf)))
       (setf (s-head-entries elf) (loop for i from 0 below (s-head-num-entries (ehead elf))
-                                    collect (parse-sect-header-entry s (ehead elf)))))
+                                    collect (parse-sect-header-entry s (ehead elf))))
+      (file-position s 0)
+      (setf (filebuf elf)
+            (let ((seq (make-array (file-length s) :element-type '(unsigned-byte 8))))
+              (read-sequence seq s)
+              seq)))
     elf))
 
 (defmethod parse-elf-header ((s stream))

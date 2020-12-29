@@ -4,7 +4,7 @@
   ((elf-header :accessor ehead)
    (program-header-entries :accessor p-head-entries)
    (section-header-entries :accessor s-head-entries)
-   (sections :accessor sections)))
+   (filebuf :accessor filebuf)))
 
 (defclass elf-header ()
   ((cpu-word-width ;; :32 or :64
