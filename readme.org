@@ -1,0 +1,5 @@
+* cl-elf
+  This is an ELF file (currently header-only) parser that I wrote.
+
+  It's very incomplete, so the API isn't done, but will hopefully be
+  listed here later.
